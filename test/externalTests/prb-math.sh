@@ -59,12 +59,12 @@ function prb_math_test
     download_project "$repo" "$ref_type" "$ref" "$DIR"
 
     cp .env.example .env
+    rm .yarn -r
 
     neutralize_package_lock
     neutralize_package_json_hooks
     force_hardhat_compiler_binary "$config_file" "$BINARY_TYPE" "$BINARY_PATH"
     force_hardhat_compiler_settings "$config_file" "$(first_word "$SELECTED_PRESETS")" "$config_var"
-    yarn set version 1.x --only-if-needed
     yarn install
 
     replace_version_pragmas
